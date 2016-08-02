@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/stylesheet.css' %}"/>
+
+<h1 style="font-family:Verdana">{{ coupon.title }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<ul>
+<li style="font-family:Verdana">Coupon name:{{coupon.title}}</li>
+
+<li style="font-family:Verdana;color:red">Valid uptil :{{coupon.validity}}</li>
+
+</ul>
+
+<div class="terms">
+<h6>Terms and Conditions</h6>
+<textarea>{{coupon.terms}}</textarea>
+</div>
+
+
+<form action="{% url 'coupons:claim' coupon.id %}" method="post" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }">
+{% csrf_token %}
+<input type="checkbox" name="checkbox" value="check" id="agree" /> I have read and agree to the Terms and Conditions and Privacy Policy
+<p><input type="submit" value="Claim!"   /></p>
+</form>
+
+{% endblock %}
