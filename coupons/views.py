@@ -30,6 +30,13 @@ class ResultView(generic.DetailView):
     def get_queryset(self):
         return Coupon.objects.filter(publish_date__lte=timezone.now())
 
+class User_ProfileView(generic.ListView):
+    model = Claim
+    context_object_name = 'claims_list'
+    template_name = 'coupons/user_profileview.html'
+    def get_queryset(self):
+        return Claim.objects.filter(user=self.request.user).order_by('-date_claimed')
+
 def claim(request, coupon_id):
     coupon = get_object_or_404(Coupon, pk=coupon_id)
     if request.user.is_authenticated():

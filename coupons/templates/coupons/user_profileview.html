@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<div class="row">
+  <div class="six columns">
+    <h4>Your Details:</h4>
+    <p>Username: {{request.user.username}}</p>
+    <p>First Name: {{request.user.first_name}}</p>
+    <p>Last Name: {{request.user.last_name}}</p>
+    <p>Email: {{request.user.email}}</p>
+    <p>Number: {{request.user.phone_number}}</p>
+  </div> 
+</div>
+
+<div class="row">
+  <table class="u-full-width">
+    <thead>
+      <tr>
+        <th>Coupon Title</th>
+        <th>Coupon Code</th>
+        <th>Date Claimed</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for claim in claims_list %}
+      <tr>
+        <td>{{claim.coupon.title}}</td>
+        <td>{{claim.coupon.code}}</td>
+        <td>{{claim.date_claimed}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

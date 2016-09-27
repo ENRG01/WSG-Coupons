@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/result/$', views.ResultView.as_view(), name='result'),
     # ex: /coupons/create
     url(r'^create/$', views.createcoupon, name='createcoupon'),
+  # ex: /coupons/user_profile/
+    url(r'^user_profile/$', views.User_ProfileView.as_view(), name='user_profileview'),
 ]
