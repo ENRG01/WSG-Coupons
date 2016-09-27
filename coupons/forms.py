@@ -1,12 +1,12 @@
 from django import forms
 from .models import Coupon
- 
+
+# Coupon Creation form
 class CouponCreationForm(forms.ModelForm):
-#coupon creation form   
     class Meta:
         model = Coupon
         fields = ("title","code","description","publish_date","expire_date","terms")
-        
+
     def __init__(self, *args, **kwargs):
         super(CouponCreationForm, self).__init__(*args, **kwargs)
 

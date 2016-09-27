@@ -15,7 +15,6 @@
   </div>
   <div class="row">
     <div class="six columns">
-      
       <label for="id_first_name">First Name</label>
       <input class="u-full-width" id="id_first_name" name="first_name" type="text" pattern="[a-zA-Z][a-zA-Z .'-]{1,24}" placeholder="John" value="{{ form.first_name.value|default_if_none:'' }}" required>
       {{ form.first_name.errors }}

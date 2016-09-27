@@ -1,7 +1,7 @@
 from .forms import PersonCreationForm
 from django.shortcuts import redirect, render
 
-#user registration form
+# User Registration form
 def register(request):
     if request.method == 'POST':
         form = PersonCreationForm(request.POST)
