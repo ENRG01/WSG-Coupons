@@ -26,4 +26,6 @@ urlpatterns = [
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     # ex: /accounts/register
     url(r'^register/$', views.register, name='register'),
+    # ex: /accounts/edit_profile
+    url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
 ]

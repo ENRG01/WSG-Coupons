@@ -1,4 +1,5 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm 
+from django import forms
 
 from .models import Person
 
@@ -28,3 +29,15 @@ class PersonChangeForm(UserChangeForm):
     class Meta:
         model = Person
         fields = '__all__'
+
+class EditProfileForm(forms.ModelForm):
+    """A form for updating user details. Includes all the fields that
+    a user can modify.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super(EditProfileForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = Person
+        fields = ("username","first_name","last_name","phone_number","email")
