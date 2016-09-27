@@ -24,9 +24,11 @@ class DetailView(generic.DetailView):
     def get_queryset(self):
         return Coupon.objects.filter(publish_date__lte=timezone.now())
 
-class ResultsView(generic.DetailView):
+class ResultView(generic.DetailView):
     model = Coupon
-    template_name = 'coupons/results.html'
+    template_name = 'coupons/result.html'
+    def get_queryset(self):
+        return Coupon.objects.filter(publish_date__lte=timezone.now())
 
 def claim(request, coupon_id):
     coupon = get_object_or_404(Coupon, pk=coupon_id)
@@ -55,7 +57,7 @@ def claim(request, coupon_id):
             'coupon': coupon,
             'error_message': "You need to be logged in to claim.",
         })
-
+#view for creating coupons
 def createcoupon(request):
     if request.method == 'POST':
         form = CouponCreationForm(request.POST)

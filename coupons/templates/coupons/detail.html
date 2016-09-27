@@ -19,16 +19,22 @@
   <pre><code class="terms">{{coupon.terms}}</code></pre>
 </div>
 {% if request.user == coupon.owner %}
+    <table class="u-full-width">
+    <tr>
+    <th>Name</th>
+    <th>Phone Number</th>
+    <th>Email ID</th>
+    <th>Claimed Date</th>
+    </tr>
 {% for user in coupon.claimants.all %}
-<div class="row">
-  <div class="six columns">
-    <p>Claimed by: {{ user.first_name }} {{ user.last_name }}</p>
-    <p>Date of Birth: {{ user.date_of_birth }}</p>
-    <p>Phone Number: {{ user.phone_number }}</p>
-    <p>Email ID: {{ user.email }}</p>
-  </div>
-</div>
+    <tr>
+    <td>{{ user.first_name }} {{ user.last_name }}</td>
+    <td>{{ user.phone_number }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.date_claimed }}</td>
+    </tr>
 {% endfor %}
+</table>
 {% else %}
 <form action="{% url 'coupons:claim' coupon.id %}" method="post">
 {% csrf_token %}
